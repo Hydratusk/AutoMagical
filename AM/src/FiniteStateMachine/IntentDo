@@ -1,0 +1,6 @@
+$ready:key1<actting,key2<smile
+ready-act-waiting:key1<haha
+waiting-do-completion:key1<haha,key2<cryLater
+waiting-dont-ready:key1<haha
+completion-done-ready:key1<haha,key2<nothing
+completion-error-ready:key1<haha,key2<cryLater
