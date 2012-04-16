@@ -1,0 +1,5 @@
+$Waiting to send Intent:WaveMSG<Can I,Finished<False,NeededInput<Remote,REST<post,outtype<wave,intype<wave
+Waiting to send Intent-Do it-Waiting to do Action:WaveMSG<Execute,Finished<False,NeededInput<Remote,REST<nothing,outtype<nothing,intype<nothing
+Waiting to do Action-Success-Done:Finished<true,NeededInput<Remote,WaveMSG<nothing
+Waiting to send Intent-Failure-ERROR:MessageToUser<Action not allowed,Finished<true,NeededInput<None,WaveMSG<nothing
+Waiting to do Action-Failure-ERROR:MessageToUser<Remote system unable to complete action,Finished<true,NeededInput<None,WaveMSG<nothing

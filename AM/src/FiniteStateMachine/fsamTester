@@ -1,0 +1,5 @@
+$A:k1<A
+A-1-B:k2<B
+B-1-C:k3<C
+C-1-D:k1<AD,k2<nothing
+D-1-E:k1<NOTHING,k2<BE,k3<CE

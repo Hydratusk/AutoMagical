@@ -1,5 +1,5 @@
-$ready:key1<actting,key2<smile
-ready-act-waiting:key1<haha
+$Waiting to Send Intent:key1<actting,key2<smile,key3<Bar
+Waiting to Send Intent-act-waiting:key1<haha,key3<nothing
 waiting-do-completion:key1<haha,key2<cryLater
 waiting-dont-ready:key1<haha
 completion-done-ready:key1<haha,key2<nothing

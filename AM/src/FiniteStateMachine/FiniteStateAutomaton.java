@@ -64,7 +64,7 @@ public class FiniteStateAutomaton extends AbstractMachine {
 			{
 				for(String s:output)
 				{	
-					System.out.println(s);
+					//System.out.println(s);
 					subout = s.split("<");
 					variables.add(new Dyad(subout[0],subout[1]));				
 				}
