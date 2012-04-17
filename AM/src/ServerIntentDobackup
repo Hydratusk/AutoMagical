@@ -1,7 +1,7 @@
 $DeclaredIntent:Finished<False,NeededInput<Remote,REST<post,intype<wave
 DeclaredIntent-Can I-SystemResponse:Finished<false,NeededInput<decision,REST<nothing,intype<nothing
-SystemResponse-true-Action:WaveMSG<Do it,Finished<false,NeededInput<Remote,outtype<wave
+SystemResponse-true-Action:WaveMSG<Do it,Finished<false,NeededInput<remote,outtype<wave
 SystemResponse-false-Failure:WaveMSG<Failure,Finished<true,NeededInput<None,outtype<wave
-Action-Execute-SystemActionResponse:WaveMSG<nothing,Finished<false,NeededInput<System,outtype<nothing
+Action-Execute-SystemActionResponse:WaveMSG<nothing,Finished<false,NeededInput<decision,outtype<nothing
 SystemActionResponse-true-Success:WaveMSG<Success,Finished<true,NeededInput<None,outtype<wave
 SystemActionResponse-false-Failure:WaveMSG<Failure,Finished<true,NeededInput<None,outtype<wave

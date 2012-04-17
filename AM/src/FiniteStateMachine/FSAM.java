@@ -220,7 +220,7 @@ public class FSAM extends FiniteStateAutomaton {
 	 * Type of Rest message we are sending, Either get or post
 	 * @return
 	 */
-	public String getRestType()
+	public String getRESTType()
 	{
 		String ret=null;
 		if(super.variableValues.containsKey("REST"))
@@ -281,12 +281,12 @@ public class FSAM extends FiniteStateAutomaton {
 
 	/**
 	 * Checks to see if it is finished
-	 * fails open
+	 * fails closed
 	 * @return
 	 */
 	public boolean isFinished()
 	{
-		boolean ret =true;
+		boolean ret =false;
 		if(super.variableValues.containsKey("Finished"))
 		{
 			ret=super.variableValues.get("Finished").equals("true")?true:false;

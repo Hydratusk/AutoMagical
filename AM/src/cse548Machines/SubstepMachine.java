@@ -7,9 +7,10 @@ import FiniteStateMachine.FSAM;
 public class SubstepMachine extends FSAM implements cse548interfaces.deltable{
 
 	
-	private IntentDoMachine IDM;
+	public IntentDoMachine IDM;
 	private String name;
-	
+	private Wave tempWave=null;
+	private boolean hold =true;
 	public SubstepMachine(String ServentType, String protocolStep) {
 		
 		super(ServentType+protocolStep, ServentType);
@@ -30,11 +31,17 @@ public class SubstepMachine extends FSAM implements cse548interfaces.deltable{
 
 	/**
 	 * Also know as get wave, needs to set this machines and submachines wave fields
+	 * @throws Exception 
 	 */
 	@Override
-	public void setWaveVariables(Wave incomingWave) {
+	public void setWaveVariables(Wave incomingWave) throws Exception {
 		incomingWave.setProtocolSubstep(super.getFieldValue("WaveMSG"));
 		IDM.setWaveVariables(incomingWave);
+		if(IDM.isFinished())
+		{
+			System.out.println("IDM+=--0908is finished");
+			IDM.initialize();
+		}
 		
 	}
 
@@ -43,22 +50,32 @@ public class SubstepMachine extends FSAM implements cse548interfaces.deltable{
 	 * and neededinput is Wave delta submachine, else
 	 * do nothing.  If submachine is 'Finished' then we delta
 	 * this machine
+	 * @throws Exception 
 	 */
 	@Override
-	public boolean delta(Wave incomingWave) {
+	public boolean delta(Wave incomingWave) throws Exception{
 		boolean ret=false;
+		tempWave = hold?incomingWave:null;
+		
 		if(!IDM.isFinished())
 		{
 			if(IDM.NeededInput().equalsIgnoreCase("remote"))
 			{
 				ret=IDM.delta(incomingWave);
 			}
+			
 		}
-		else
+		
+		if(IDM.isFinished())
 		{
-			if(this.NeededInput().equalsIgnoreCase("remote"))
+			if(this.NeededInput()!=null&&this.NeededInput().equalsIgnoreCase("remote"))
 			{
+				System.err.println("in big machine wave contains:\t"+getVariablesFromWave(incomingWave));
+				if(getVariablesFromWave(incomingWave)!=null)
+				{
 				ret= super.delta(getVariablesFromWave(incomingWave));
+				}
+				IDM.initialize();
 			}
 		}
 		return ret;
@@ -70,23 +87,57 @@ public class SubstepMachine extends FSAM implements cse548interfaces.deltable{
 	 * and neededinput is boolean delta submachine, else
 	 * do nothing.  If submachine is 'Finished' then we delta
 	 * this machine
+	 * @throws Exception 
 	 */
 	@Override
-	public boolean delta(boolean okay) {
+	public boolean delta(boolean okay) throws Exception {
+		//System.out.println("Boolean delta");
 		String interim = okay?"true":"false";
 		boolean ret=false;
+		//Intent do never needs a decision
+		//System.out.println(IDM.printCurrentState());
 		if(!IDM.isFinished())
 		{
+			//System.out.println("IDM not finished delta");
 			if(IDM.NeededInput().equalsIgnoreCase("decision"))
 			{
 				ret=IDM.delta(okay);
+				if(IDM.isFinished())
+				{
+					System.err.println("Idm is finished");
+					super.delta(getVariablesFromWave(tempWave));
+					//IDM.initialize();
+				
+				}
+			}
+			else
+			{
+				//System.out.println("IDM does not need decision");
+				if(this.NeededInput().equalsIgnoreCase("decision"))
+				{
+					//System.out.println("This does need decision");
+					
+					ret= super.delta(interim);
+				}
 			}
 		}
 		else
 		{
-			if(this.NeededInput().equalsIgnoreCase("decision"))
+			System.out.println("IDM finished delta");
+			if(this.NeededInput()!=null&&this.NeededInput().equalsIgnoreCase("decision"))
 			{
+				System.out.println("Here");
 				ret= super.delta(interim);
+				IDM.initialize();
+			}
+			else
+			{
+				//System.out.println("Here2");
+				if(this.NeededInput()!=null&&super.NeededInput().equalsIgnoreCase("remote"))
+				{
+					System.out.println("Here2");
+					super.delta(getVariablesFromWave(tempWave));
+				}
 			}
 		}
 		return ret;
@@ -135,7 +186,7 @@ public class SubstepMachine extends FSAM implements cse548interfaces.deltable{
 	public String NeededInput()
 	{
 		String ret=null;
-		if(IDM.NeededInput()!=null)
+		if(IDM.NeededInput()!=null && super.NeededInput()!=null&&super.NeededInput().equalsIgnoreCase("remote"))
 		{
 			ret=IDM.NeededInput();
 		}

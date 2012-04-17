@@ -26,9 +26,12 @@ public class FiniteStateAutomaton extends AbstractMachine {
 		
 		public void initialize()throws Exception
 		{
+			//System.out.println(this.specificationFile);
+			//System.out.println()
 			InputStream file = FiniteStateAutomaton.class.getResourceAsStream(this.specificationFile);
 			//System.out.println(FiniteStateAutomaton.class.getResource(specificationFile));
 			//System.out.println(file.available());
+			//System.out.println(this.specificationFile);
 			BufferedReader in = new BufferedReader(new InputStreamReader(file,"UTF-8"));
 			variableValues = new HashMap<String,String>();
 			String str;

@@ -1,6 +1,6 @@
 package cse548Machines;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import FiniteStateMachine.FSAM;
 
@@ -20,8 +20,12 @@ public class IntentDoMachine extends FSAM implements cse548interfaces.deltable{
 	}
 
 	@Override
-	public void setWaveVariables(Wave incomingWave) {
+	public void setWaveVariables(Wave incomingWave) throws Exception {
 		incomingWave.setIntentDo(super.getFieldValue("WaveMSG"));
+		if(this.isFinished())
+		{
+			this.initialize();
+		}
 		
 	}
 
@@ -29,6 +33,7 @@ public class IntentDoMachine extends FSAM implements cse548interfaces.deltable{
 	public boolean delta(Wave incomingWave) {
 		return super.delta(getVariablesFromWave(incomingWave));
 	}
+	
 
 	@Override
 	public boolean delta(boolean okay) {
@@ -40,9 +45,7 @@ public class IntentDoMachine extends FSAM implements cse548interfaces.deltable{
 	@Override
 	public String getMessagesToUser()
 	{
-		//ArrayList<String> ret = new ArrayList<String>();
 		return super.getMessagesToUser();
-		//return ret;
 	}
 
 	@Override
@@ -50,7 +53,6 @@ public class IntentDoMachine extends FSAM implements cse548interfaces.deltable{
 	{
 		
 		return super.NeededInput();
-		
 	}
 
 	@Override

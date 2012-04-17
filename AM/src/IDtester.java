@@ -1,5 +1,5 @@
+import cse548Machines.IntentDoMachine;
 import cse548interfaces.Wave;
-import FiniteStateMachine.IntentDoMachine;
 
 
 public class IDtester {
