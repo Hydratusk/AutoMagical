@@ -1,0 +1,9 @@
+$lookup:NeededInput<remote,Finished<false,WaveMSG<wherebob
+lookup-bobip-challenge:NeededInput<decision
+challenge-true-bob:NeededInput<remote,WaveMSG<heybob
+bob-heyalice-check ticket:NeededInput<decision
+check ticket-true-calculate answer:NeededInput<decision
+calculate answer-true-answer bob:NeededInput<remote,WaveMSG<answertobob
+answer bob-answertoalice-check answer:NeededInput<decision
+check answer-true-session key:NeededInput<decision
+session key-true-done:NeededInput<nothing,Finished<true

@@ -1,0 +1,3 @@
+$waiting:NeededInput<remote,Finished<false
+waiting-wherebob-waiting2:NeededInput<remote,WaveMSG<bobip
+waiting2-wherealice-done:NeededInput<nothinh,WaveMSG<aliceip,Finished<true

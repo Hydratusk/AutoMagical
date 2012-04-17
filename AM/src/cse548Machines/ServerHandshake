@@ -1,0 +1,8 @@
+$waiting:NeededInput<remote,Finished<false
+waiting-heybob-check ticket:NeededInput<decision
+check ticket-true-lookup:NeededInput<remote,WaveMSG<wherealice
+lookup-aliceip-challenge:NeededInput<decision
+challenge-true-alice:NeededInput<remote,WaveMSG<heyalice
+alice-answertobob-check answer:NeededInput<decision
+check answer-true-session key:NeededInput<decision
+session key-true-done:NeededInput<nothing,Finished<true,WaveMSG<answertoalice
